@@ -1,0 +1,30 @@
+{
+  "name": "simple-tinder-app",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run serve | npm run dev",
+    "serve": "./node_modules/.bin/http-server -p 8080",
+    "dev": "webpack-dev-server --progress --colors --port 8090"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/scarow/simple-tinder-app.git"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/scarow/simple-tinder-app/issues"
+  },
+  "homepage": "https://github.com/scarow/simple-tinder-app",
+  "dependencies": {
+    "react": "~0.13.3"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "~1.12.0",
+    "webpack": "~1.12.2",
+    "jsx-loader": "~0.13.2",
+    "http-server": "~0.8.5"
+  }
+}
