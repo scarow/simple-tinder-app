@@ -6,6 +6,8 @@ var RouteHandler = Router.RouteHandler;
 var Card = require('../Card');
 var HomeActions = require('../../actions/HomeActions');
 var HomeStore = require('../../stores/HomeStore');
+var Hammer = require('react-hammerjs');
+var options = {touchAction:true, recognizers:{tap:{time:600, threshold:100}}};
 
 var Home = React.createClass({
   mixins: [
@@ -13,7 +15,8 @@ var Home = React.createClass({
   ],
   getInitialState(){
     return {
-      cards: []
+      cards: [],
+      index: 0
     };
   },
   componentDidMount(){
@@ -24,19 +27,36 @@ var Home = React.createClass({
   _onChange(data) {
     this.setState(data);
   },
+  handleSwipe(){
+    console.log('handleSwipe');
+    this.setState({ index: this.state.index + 1});
+  },
   render(){
+    console.log(this.state);
     var cards = this.state.cards;
+
+    var card = this.state.cards[this.state.index];
+
     return (
       <div>
-        Home page
-        {
-          cards.map(function(card){
-            return ( <Card card={ card } key={ card.id }/> );
-          })
-        }
-        <RouteHandler />
+        <Hammer onSwipe={this.handleSwipe} style={{ border: '1px solid black' }}>
+          <div>
+            <Card card={ card }/>
+          </div>
+        </Hammer>
       </div>
     );
+    // return (
+    //   <div>
+    //     Home page
+    //     {
+    //       cards.map(function(card){
+    //         return ( <Card card={ card } key={ card.id }/> );
+    //       })
+    //     }
+    //     <RouteHandler />
+    //   </div>
+    // );
   }
 });
 

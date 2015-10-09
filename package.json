@@ -20,6 +20,7 @@
   "homepage": "https://github.com/scarow/simple-tinder-app",
   "dependencies": {
     "react": "~0.13.3",
+    "react-hammerjs": "^0.3.0",
     "react-router": "^0.13.3",
     "reflux": "^0.2.12",
     "webpack": "~1.12.2"

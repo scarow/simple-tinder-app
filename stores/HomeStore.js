@@ -1,17 +1,19 @@
 var Reflux = require('reflux');
 var HomeActions = require('../actions/HomeActions');
-var Api = require('../api/api'); 
+var Api = require('../api/api');
 
 var HomeStore = Reflux.createStore({
   listenables: HomeActions,
 
   init () {
     this.cards = [];
+    this.index = 0;
   },
 
   getState () {
     return {
-      cards: this.cards
+      cards: this.cards,
+      index: this.index
     };
   },
 
