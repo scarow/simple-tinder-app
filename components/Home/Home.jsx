@@ -36,7 +36,8 @@ var Home = React.createClass({
     var cards = this.state.cards;
 
     var card = this.state.cards[this.state.index];
-
+    // if card is null, go grab next batch of cards
+    // this should not happen in render method
     return (
       <div>
         <Hammer onSwipe={this.handleSwipe} style={{ border: '1px solid black' }}>
@@ -46,17 +47,6 @@ var Home = React.createClass({
         </Hammer>
       </div>
     );
-    // return (
-    //   <div>
-    //     Home page
-    //     {
-    //       cards.map(function(card){
-    //         return ( <Card card={ card } key={ card.id }/> );
-    //       })
-    //     }
-    //     <RouteHandler />
-    //   </div>
-    // );
   }
 });
 
