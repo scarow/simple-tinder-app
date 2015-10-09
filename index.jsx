@@ -1,5 +1,7 @@
-/** @jsx React.DOM */
-'use strict'
-var React = require('react')
-var Hello = require('./Hello')
-React.render(<Hello />, document.getElementById('content'))
+var React = require('react');
+var Router = require('react-router');
+var routes = require('./routes');
+
+Router.run(routes, Router.HistoryLocation, (Root) => {
+  React.render(<Root/>, document.body);
+});
