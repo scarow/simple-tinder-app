@@ -7,7 +7,7 @@ var Card = require('../Card');
 var HomeActions = require('../../actions/HomeActions');
 var HomeStore = require('../../stores/HomeStore');
 var Hammer = require('react-hammerjs');
-var options = {touchAction:true, recognizers:{tap:{time:600, threshold:100}}};
+var Radium = require('radium');
 
 var Home = React.createClass({
   mixins: [
@@ -15,39 +15,48 @@ var Home = React.createClass({
   ],
   getInitialState(){
     return {
-      cards: [],
-      index: 0
+      cards: []
     };
   },
   componentDidMount(){
     this.listenTo(HomeStore, this._onChange);
-    HomeActions.getAllCards();
+    HomeActions.getNextBatch();
   },
 
   _onChange(data) {
     this.setState(data);
   },
-  handleSwipe(){
-    console.log('handleSwipe');
-    this.setState({ index: this.state.index + 1});
+  handleSwipe(topCard){
+    // TO DO: swipe direction needs to be handled
+    // if swipe left
+    HomeActions.removeCard();
+    // if swipe right, show it's a match
   },
   render(){
-    console.log(this.state);
-    var cards = this.state.cards;
-
-    var card = this.state.cards[this.state.index];
-    // if card is null, go grab next batch of cards
-    // this should not happen in render method
+    var topCard = this.state.cards[0];
+    var nextUp = this.state.cards[1];
     return (
-      <div>
-        <Hammer onSwipe={this.handleSwipe} style={{ border: '1px solid black' }}>
+      <div className='stack' style={ styles.stack }>
+        <Hammer onSwipe={this.handleSwipe}>
           <div>
-            <Card card={ card }/>
+            <Card card={ topCard } isTop={true}/>
           </div>
         </Hammer>
+        <div>
+          <Card card={ nextUp } isTop={false}/>
+        </div>
       </div>
     );
   }
 });
 
-module.exports = Home;
+var styles = {
+  stack: {
+    margin: '20px auto',
+    width: '400px',
+    padding: 0,
+    position: 'relative',
+    maxWidth: '100%'
+  }
+}
+module.exports = Radium(Home);

@@ -1,34 +1,46 @@
 var Reflux = require('reflux');
 var HomeActions = require('../actions/HomeActions');
 var Api = require('../api/api');
+var limit = 5;
+var offset = 0;
 
 var HomeStore = Reflux.createStore({
   listenables: HomeActions,
 
   init () {
     this.cards = [];
-    this.index = 0;
   },
 
   getState () {
     return {
-      cards: this.cards,
-      index: this.index
+      cards: this.cards
     };
   },
 
-  onGetAllCards () {
-    Api.getAllCards(function(response){
-      HomeActions.getAllCards.completed(response);
+  onRemoveCard(){
+    if (this.cards.length > 1){
+      this.cards.shift();
+      this.changed();
+    } else {
+      HomeActions.getNextBatch();
+    }
+  },
+
+  onGetNextBatch () {
+    var params = {
+      limit: limit,
+      offset: offset
+    };
+    Api.getNextBatch(params, function(response){
+      HomeActions.getNextBatch.completed(response);
     });
   },
 
-  onGetAllCardsCompleted (response){
-    console.log(response);
+  onGetNextBatchCompleted (response){
+    offset = offset + limit;
     this.cards = response;
     this.changed();
   },
-
 
   changed () {
     this.trigger(this.getState());

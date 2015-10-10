@@ -1,8 +1,8 @@
 var Reflux = require('reflux');
 
 var actions = Reflux.createActions({
-  getNextCard: {children: ['completed', 'failed']},
-  getAllCards: { children: ['completed', 'failed']}
+  getNextBatch: { children: ['completed', 'failed']},
+  removeCard: {}
 });
 
 module.exports = actions;
