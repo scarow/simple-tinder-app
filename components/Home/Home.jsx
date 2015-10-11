@@ -36,24 +36,15 @@ var Home = React.createClass({
     }
   },
 
-  // for draggable
   handleStop(event, ui) {
-    console.log(ui.position);
     if(ui.position.left < -maxMove || ui.position.left > maxMove){
       this.handleSwipe(ui.position.left);
     } else {
-      // TO DO:
-      console.log('should pop back');
-      console.log(this.refs);
       this.refs.draggable.resetState();
     }
-
-    // console.log('Event: ', event);
-    // console.log('Position: ', ui.position);
   },
 
   render(){
-    // TO DO: cards should always start in the same place
     var topCard = this.state.cards[0];
     var nextUp = this.state.cards[1];
     return (
