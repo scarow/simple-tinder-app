@@ -22,7 +22,6 @@
     "radium": "^0.14.1",
     "react": "~0.13.3",
     "react-draggable": "^0.8.2",
-    "react-hammerjs": "^0.3.0",
     "react-router": "^0.13.3",
     "reflux": "^0.2.12",
     "webpack": "~1.12.2"

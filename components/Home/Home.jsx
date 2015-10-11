@@ -6,7 +6,6 @@ var RouteHandler = Router.RouteHandler;
 var Card = require('../Card');
 var HomeActions = require('../../actions/HomeActions');
 var HomeStore = require('../../stores/HomeStore');
-var Hammer = require('react-hammerjs');
 var Radium = require('radium');
 var Draggable = require('react-draggable');
 var maxMove = 50;
@@ -57,21 +56,19 @@ var Home = React.createClass({
     var nextUp = this.state.cards[1];
     return (
       <div className='stack' style={ styles.stack }>
-        { /*<Hammer onSwipe={this.handleSwipe}> */ }
-          <Draggable
-            axis="both"
-            handle=".handle"
-            start={{x: 0, y: 0}}
-            moveOnStartChange={false}
-            grid={[25, 25]}
-            zIndex={100}
-            onStop={this.handleStop}>
-            <div>
-              <div className='handle'> drag </div>
-              <Card  {...this.props} card={ topCard } isTop={true}/>
-            </div>
-          </Draggable>
-        { /*</Hammer>*/}
+        <Draggable
+          axis="both"
+          handle=".handle"
+          start={{x: 0, y: 0}}
+          moveOnStartChange={false}
+          grid={[25, 25]}
+          zIndex={100}
+          onStop={this.handleStop}>
+          <div>
+            <div className='handle'> drag </div>
+            <Card  {...this.props} card={ topCard } isTop={true}/>
+          </div>
+        </Draggable>
         <div>
           <Card card={ nextUp } isTop={false}/>
         </div>
