@@ -9,11 +9,12 @@ var Card = React.createClass({
       isTop: null
     };
   },
+
   render(){
     var card = this.props.card;
     var top = this.props.isTop;
     return (
-      <div style={ top ? [styles.top, styles.bottom] : styles.bottom}>
+      <div {...this.props} style={ top ? [styles.top, styles.bottom] : styles.bottom}>
         <div style={ styles.profilePic}>
           <img src={ card.prof_photo } style={styles.image} /><br/>
         </div>
