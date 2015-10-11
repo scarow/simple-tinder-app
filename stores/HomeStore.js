@@ -42,6 +42,15 @@ var HomeStore = Reflux.createStore({
     this.changed();
   },
 
+  onSwipeRight(){
+    this.cards.shift();
+    this.cards.unshift({
+      match: true,
+      isTop: true
+    });
+    this.changed();
+  },
+
   changed () {
     this.trigger(this.getState());
   }

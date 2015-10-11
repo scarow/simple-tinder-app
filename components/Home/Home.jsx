@@ -9,6 +9,7 @@ var HomeStore = require('../../stores/HomeStore');
 var Hammer = require('react-hammerjs');
 var Radium = require('radium');
 var Draggable = require('react-draggable');
+var maxMove = 50;
 
 var Home = React.createClass({
   mixins: [
@@ -27,35 +28,36 @@ var Home = React.createClass({
   _onChange(data) {
     this.setState(data);
   },
-  handleSwipe(){
-    // TO DO: swipe direction needs to be handled
-    // if swipe left
-    HomeActions.removeCard();
-    // if swipe right, show it's a match
+  handleSwipe(direction){
+    if (direction > 0){
+      HomeActions.swipeRight();
+    } else if (direction < 0){
+      HomeActions.removeCard();
+    }
   },
 
   // for draggable
-  handleStart(event, ui) {
-    console.log('Event: ', event);
-    console.log('Position: ', ui.position);
-  },
-
-  handleDrag(event, ui) {
-    console.log('Event: ', event);
-    console.log('Position: ', ui.position);
-  },
-
   handleStop(event, ui) {
-    console.log('Event: ', event);
-    console.log('Position: ', ui.position);
+    console.log(ui.position);
+    if(ui.position.left < -maxMove || ui.position.left > maxMove){
+      this.handleSwipe(ui.position.left);
+    } else {
+      // TO DO:
+      console.log('should pop back');
+      //pop back to initial position
+    }
+
+    // console.log('Event: ', event);
+    // console.log('Position: ', ui.position);
   },
 
   render(){
+    // TO DO: cards should always start in the same place
     var topCard = this.state.cards[0];
     var nextUp = this.state.cards[1];
     return (
       <div className='stack' style={ styles.stack }>
-        <Hammer onSwipe={this.handleSwipe}>
+        { /*<Hammer onSwipe={this.handleSwipe}> */ }
           <Draggable
             axis="both"
             handle=".handle"
@@ -63,15 +65,13 @@ var Home = React.createClass({
             moveOnStartChange={false}
             grid={[25, 25]}
             zIndex={100}
-            onStart={this.handleStart}
-            onDrag={this.handleDrag}
             onStop={this.handleStop}>
             <div>
               <div className='handle'> drag </div>
               <Card  {...this.props} card={ topCard } isTop={true}/>
             </div>
           </Draggable>
-        </Hammer>
+        { /*</Hammer>*/}
         <div>
           <Card card={ nextUp } isTop={false}/>
         </div>
