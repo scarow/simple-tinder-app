@@ -25,6 +25,7 @@ var Home = React.createClass({
   },
 
   _onChange(data) {
+    this.refs.draggable.resetState();
     this.setState(data);
   },
   handleSwipe(direction){
@@ -43,7 +44,8 @@ var Home = React.createClass({
     } else {
       // TO DO:
       console.log('should pop back');
-      //pop back to initial position
+      console.log(this.refs);
+      this.refs.draggable.resetState();
     }
 
     // console.log('Event: ', event);
@@ -57,6 +59,7 @@ var Home = React.createClass({
     return (
       <div className='stack' style={ styles.stack }>
         <Draggable
+          ref="draggable"
           axis="both"
           handle=".handle"
           start={{x: 0, y: 0}}
