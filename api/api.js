@@ -1,8 +1,9 @@
-var baseUrl = 'http://localhost:3000'
+var config = require('config');
+var baseUrl = config.baseApiUrl;
 
 module.exports = {
   getNextBatch(params, success) {
-    $.get(baseUrl + '/users', params, function(result){
+    $.get(baseUrl + 'users', params, function(result){
         if(success){ success(result); }
       }
     )

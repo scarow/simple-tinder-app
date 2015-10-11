@@ -30,6 +30,7 @@ var Home = React.createClass({
   },
   handleSwipe(direction){
     if (direction > 0){
+      // TO DO: should i disable swiping on 'its a match'?
       HomeActions.swipeRight();
     } else if (direction < 0){
       HomeActions.removeCard();
@@ -59,8 +60,8 @@ var Home = React.createClass({
           zIndex={100}
           onStop={this.handleStop}>
           <div>
-            <div className='handle'> drag </div>
-            <Card  {...this.props} card={ topCard } isTop={true}/>
+            <div className='handle'> Drag here </div>
+            <Card {...this.props} card={ topCard } isTop={true}/>
           </div>
         </Draggable>
         <div>
