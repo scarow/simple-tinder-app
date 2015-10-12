@@ -22,13 +22,13 @@ var Card = React.createClass({
     var cardData;
     if (!card){
       cardData = (
-        <div style={ top ? [styles.top, styles.bottom] : styles.bottom}>
+        <div>
           Fetching new potential matches!
         </div>
       );
     } else if (card.match){
       cardData = (
-        <div style={ top ? [styles.top, styles.bottom] : styles.bottom }>
+        <div>
           You got a match!
           <br/>
           <button onClick={ this.onClick }> Got it </button>
