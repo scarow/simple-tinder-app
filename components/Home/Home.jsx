@@ -37,7 +37,7 @@ var Home = React.createClass({
   },
 
   handleStop(event, ui) {
-    if(ui.position.left < -maxMove || ui.position.left > maxMove && this.state.cards.length > 1){
+    if(ui.position.left < -maxMove || ui.position.left > maxMove && this.state.cards.length > 0){
       this.handleSwipe(ui.position.left);
     } else {
       this.refs.draggable.resetState();
