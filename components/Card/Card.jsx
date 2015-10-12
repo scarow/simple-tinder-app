@@ -23,7 +23,7 @@ var Card = React.createClass({
     if (!card){
       cardData = (
         <div>
-          Fetching new potential matches!
+          No More Matches
         </div>
       );
     } else if (card.match){

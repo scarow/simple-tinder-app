@@ -37,7 +37,7 @@ var Home = React.createClass({
   },
 
   handleStop(event, ui) {
-    if(ui.position.left < -maxMove || ui.position.left > maxMove){
+    if(ui.position.left < -maxMove || ui.position.left > maxMove && this.state.cards.length > 1){
       this.handleSwipe(ui.position.left);
     } else {
       this.refs.draggable.resetState();
@@ -47,6 +47,7 @@ var Home = React.createClass({
   render(){
     var topCard = this.state.cards[0];
     var nextUp = this.state.cards[1];
+    var cardCount = this.state.cards.length;
     return (
       <div className='stack' style={ styles.stack }>
         <Draggable
@@ -62,7 +63,15 @@ var Home = React.createClass({
           </div>
         </Draggable>
         <div>
-          <Card card={ nextUp } isTop={false}/>
+          {
+            function(){
+              if(cardCount > 1){
+                return (
+                  <Card card={ nextUp } isTop={false}/>
+                )
+              }
+            }.call(this)
+          }
         </div>
       </div>
     );
