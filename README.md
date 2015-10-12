@@ -9,11 +9,3 @@ Uses `localhost:8090` in local development
 run `cp ../simple-tinder-app/dist/* .` from fresh-tinder-app on branch `gh-pages` (fresh-tinder-app is clone of simple-tinder-app on my local comp)
 
 `git commit` & `git push` to get changes deployed
-
-Notes on React:
-
--- discuss/research 'use strict'
-
--- discuss/research ES6 pros/cons
-
--- discuss/research configs
