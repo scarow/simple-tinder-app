@@ -30,7 +30,6 @@ var Home = React.createClass({
   },
   handleSwipe(direction){
     if (direction > 0){
-      // TO DO: should i disable swiping on 'its a match'?
       HomeActions.swipeRight();
     } else if (direction < 0){
       HomeActions.removeCard();
@@ -53,14 +52,12 @@ var Home = React.createClass({
         <Draggable
           ref="draggable"
           axis="both"
-          handle=".handle"
           start={{x: 0, y: 0}}
           moveOnStartChange={false}
           grid={[25, 25]}
           zIndex={100}
           onStop={this.handleStop}>
           <div>
-            <div className='handle'> Drag here </div>
             <Card {...this.props} card={ topCard } isTop={true}/>
           </div>
         </Draggable>
@@ -74,11 +71,11 @@ var Home = React.createClass({
 
 var styles = {
   stack: {
-    margin: '20px auto',
-    width: '400px',
+    height: '80%',
+    width: '80%',
     padding: 0,
     position: 'relative',
-    maxWidth: '100%'
+    margin: '0 auto'
   }
 }
 module.exports = Radium(Home);

@@ -1,11 +1,19 @@
 # simple-tinder-app
 
+Notes for self:
 
-Notes:
+Uses `localhost:8090` in local development
 
-Basic webpack & react setup from here: http://jslog.com/2014/10/02/react-with-webpack-part-1/
+`npm run deploy` -> updates dist/bundle.js
 
-What do my package scripts do?
-serve: npm run serve - just starts an http-server serving files from our local dir, running on port 8080 (it serves index.html).
-dev: npm run dev - starts webpack-dev-server on port 8090 which serves both the webpack-dev-server.js runtime and our bundle.js file.
-start: npm run start - command simply executes serve first and then starts the dev server.
+run `cp ../simple-tinder-app/dist/* .` from fresh-tinder-app on branch `gh-pages` (fresh-tinder-app is clone of simple-tinder-app on my local comp)
+
+`git commit` & `git push` to get changes deployed
+
+Notes on React:
+
+-- discuss/research 'use strict'
+
+-- discuss/research ES6 pros/cons
+
+-- discuss/research configs

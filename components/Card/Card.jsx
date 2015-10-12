@@ -22,13 +22,13 @@ var Card = React.createClass({
     var cardData;
     if (!card){
       cardData = (
-        <div>
+        <div style={ top ? [styles.top, styles.bottom] : styles.bottom}>
           Fetching new potential matches!
         </div>
       );
     } else if (card.match){
       cardData = (
-        <div>
+        <div style={ top ? [styles.top, styles.bottom] : styles.bottom }>
           You got a match!
           <br/>
           <button onClick={ this.onClick }> Got it </button>
@@ -66,14 +66,16 @@ var styles = {
     borderRadius: 6,
     padding: 10,
     textAlign: 'center',
-    width: '75%',
+    width: '100%',
+    top: 10,
+    left: 10,
     margin: 'auto',
-    minHeight: 360
+    height: 400
   },
 
   profilePic: {
-    width: '300px',
-    height: '300px',
+    width: '100%',
+    height: '100%',
     overflow: 'hidden'
   },
 
@@ -87,6 +89,7 @@ var styles = {
   image: {
     borderRadius: 10,
     maxWidth: 300,
+    maxHeight: 300,
     padding: 5
   }
 }
